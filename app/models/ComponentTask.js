@@ -28,7 +28,7 @@ class ComponentTask {
         this._name = formatName(name);
         this._branch = branch;
         this._version = version;
-        this._dir = path.resolve(userHome, '.roy-cli-dev', 'node_modules', `${this._name}@${this._version}`);
+        this._dir = path.resolve(userHome, '.code-robot-cli', 'node_modules', `${this._name}@${this._version}`);
         this._sourceCodeDir = path.resolve(this._dir, this._name);
         this._buildPath = path.resolve(this._sourceCodeDir, buildPath);
         this._examplePath = path.resolve(this._sourceCodeDir, examplePath);

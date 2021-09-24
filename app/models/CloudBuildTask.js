@@ -32,7 +32,7 @@ class CloudBuildTask {
         this._version = options.version; // 项目版本号
         this._branch = options.branch; // 仓库分支号
         this._buildCmd = options.buildCmd; // 构建命令
-        this._dir = path.resolve(userHome, '.roy-cli-dev', 'cloudbuild', `${this._name}@${this._version}`); // 缓存目录
+        this._dir = path.resolve(userHome, '.code-robot-cli', 'cloudbuild', `${this._name}@${this._version}`); // 缓存目录
         this._sourceCodeDir = path.resolve(this._dir, this._name); // 缓存源码目录
         this._prod = options.prod === 'true';
         this._logger.info('_dir', this._dir);

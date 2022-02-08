@@ -1,0 +1,68 @@
+name: 自动部署新版本到服务器
+on: 
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  publish-release:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout 代码
+      - uses: actions/checkout@v2
+      # 使用阿里云ACR 完成 docker login 
+      - name: Login to Aliyun Container Registry (ACR)
+        uses: aliyun/acr-login@v1
+        with:
+          login-server: https://registry.cn-qingdao.aliyuncs.com
+          region-id: cn-qingdao
+          username: "${{ secrets.ACR_USERNAME }}"
+          password: "${{ secrets.ACR_PASSWORD }}"
+      # 使用正确的github tag 对应ACR tag 进行 docker build
+      - name: Build image for ACR docker
+        run: docker build --tag "registry.cn-qingdao.aliyuncs.com/greedcat/code-robot-cli-server:${{github.ref_name}}" .
+      # 使用标记的 tag 进行 push
+      - name: Push Image to ACR
+        run: docker push registry.cn-qingdao.aliyuncs.com/greedcat/code-robot-cli-server:${{github.ref_name}} 
+      # 查找 docker-compose-online 文件 并且完成版本替换
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v2
+        with: 
+          find: "{{tag}}"
+          replace: ${{github.ref_name}}
+          include: "docker-compose-online.yml"
+      - run: cat docker-compose-online.yml
+      # 拷贝必要文件到一个文件夹，包括 .env, docker-compose-online.yml, mongo-entrypoint
+      - name: 'copy necessary files in to one folder'
+        run: |
+          mkdir code-robot-cli-server
+          cp .env docker-compose-online.yml code-robot-cli-server
+          cp -r mongo-entrypoint code-robot-cli-server
+          ls -a code-robot-cli-server
+      # 通过 scp 拷贝必须文件到服务器
+      - name: 'copy code-robot-cli-server folder via scp'
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: 'code-robot-cli-server'
+          target: '~'
+      # 通过 SSH 登录然后重启服务
+      - name: executing ssh and restart docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script_stop: true
+          # * 登录阿里云 ACR
+          # 停止服务 docker-compose down
+          # 启动服务 docker-compose up 
+          # 清理工作
+          script: |
+            docker login --username=${{secrets.ACR_USERNAME}} --password=${{secrets.ACR_PASSWORD}} registry.cn-qingdao.aliyuncs.com
+            cd ~/code-robot-cli-server/
+            docker-compose -f docker-compose-online.yml down
+            docker-compose -f docker-compose-online.yml up -d
+            docker logout registry.cn-qingdao.aliyuncs.com

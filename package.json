@@ -1,5 +1,5 @@
 {
-  "name": "roy-cli-server",
+  "name": "code-robot-cli-server",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -18,6 +18,7 @@
     "fs-extra": "^10.0.0",
     "glob": "^7.1.7",
     "js-base64": "^3.6.1",
+    "release-it": "^14.12.4",
     "simple-git": "^2.40.0",
     "user-home": "^3.0.0"
   },
@@ -43,7 +44,8 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "release": "release-it"
   },
   "ci": {
     "version": "10"

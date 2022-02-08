@@ -5,9 +5,9 @@
  * @Github: @163.com
  * @Date: 2021-08-08 15:07:44
  * @LastEditors: Roy
- * @LastEditTime: 2021-08-08 15:23:17
+ * @LastEditTime: 2022-02-08 11:07:19
  * @Deprecated: 否
- * @FilePath: /roy-cli-server/app/service/VersionService.js
+ * @FilePath: /code-robot-cli-server/app/service/VersionService.js
  */
 
 'use strict';
@@ -15,7 +15,7 @@
 class VersionService {
     constructor(app) {
         this.app = app;
-        this.name = 'version_test';//表名
+        this.name = 'version';//表名
     }
     async insert(data) {
         const res = await this.app.mysql.insert(this.name, data);

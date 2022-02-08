@@ -5,9 +5,9 @@
  * @Github: @163.com
  * @Date: 2020-12-30 10:39:30
  * @LastEditors: Roy
- * @LastEditTime: 2021-08-08 14:07:43
+ * @LastEditTime: 2022-02-08 11:40:44
  * @Deprecated: 否
- * @FilePath: /roy-cli-server/config/config.default.js
+ * @FilePath: /code-robot-cli-server/config/config.default.js
  */
 /* eslint valid-jsdoc: "off" */
 
@@ -22,14 +22,14 @@ const {
 } = require('./db')
 
 //local
-const REDIS_PORT = 6379;
-const REDIS_HOST = '127.0.0.1';
-const REDIS_PWD = '';
+// const REDIS_PORT = 6379;
+// const REDIS_HOST = '127.0.0.1';
+// const REDIS_PWD = '';
 
 //阿里云
-// const REDIS_PORT = 6379;
-// const REDIS_HOST = 'r-bp1liwbvhzct8vjz0lpd.redis.rds.aliyuncs.com';
-// const REDIS_PWD = 'test_imooc:Imooc123456';
+const REDIS_PORT = 6379;
+const REDIS_HOST = 'r-bp1liwbvhzct8vjz0lpd.redis.rds.aliyuncs.com';
+const REDIS_PWD = 'test_imooc:Imooc123456';
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -54,6 +54,11 @@ module.exports = appInfo => {
         packetMiddleware: ['filter'],
       },
     },
+  };
+  config.cluster = {
+    listen: {
+      port: 7003,
+    }
   };
   config.redis = {
     client: {

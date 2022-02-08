@@ -5,16 +5,16 @@
  * @Github: @163.com
  * @Date: 2021-08-08 14:42:23
  * @LastEditors: Roy
- * @LastEditTime: 2021-08-08 14:59:48
+ * @LastEditTime: 2022-02-08 11:07:26
  * @Deprecated: 否
- * @FilePath: /roy-cli-server/app/service/ComponentService.js
+ * @FilePath: /code-robot-cli-server/app/service/ComponentService.js
  */
 'use strict';
 
 class ComponentService {
     constructor(app) {
         this.app = app;
-        this.name = 'component_test';//表名
+        this.name = 'component';//表名
     }
     async insert(data) {
         const res = await this.app.mysql

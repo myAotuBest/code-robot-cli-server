@@ -5,9 +5,9 @@
  * @Github: @163.com
  * @Date: 2021-08-08 14:29:31
  * @LastEditors: Roy
- * @LastEditTime: 2021-08-22 14:30:01
+ * @LastEditTime: 2022-02-08 11:06:50
  * @Deprecated: 否
- * @FilePath: /roy-cli-server/app/controller/v1/Components.js
+ * @FilePath: /code-robot-cli-server/app/controller/v1/Components.js
  */
 'use strict';
 const Controller = require('egg').Controller;
@@ -26,7 +26,7 @@ class ComponentsController extends Controller {
         const { name } = ctx.query;
         const andWhere = name ? `AND c.name LIKE '%${name}%'` : '';
         const sql = `SELECT c.id, c.name, c.classname, c.description, c.npm_name, c.npm_version, c.git_type, c.git_remote, c.git_owner, c.git_login, c.create_dt, c.update_dt, v.version, v.build_path, v.example_path, v.example_list
-FROM component_test AS c
+FROM component AS c
 LEFT JOIN version_test AS v ON c.id = v.component_id
 WHERE c.status = 1 AND v.status = 1 ${andWhere}
 ORDER BY c.create_dt, v.version DESC`;
@@ -86,12 +86,12 @@ ORDER BY c.create_dt, v.version DESC`;
     async show() {
         const { ctx, app } = this;
         const id = ctx.params.id;
-        const results = await app.mysql.select('component_test', {
+        const results = await app.mysql.select('component', {
             where: { id },
         });
         if (results && results.length > 0) {
             const component = results[0];
-            component.versions = await app.mysql.select('version_test', {
+            component.versions = await app.mysql.select('version', {
                 where: { component_id: id },
                 orders: [['version', 'desc']],
             });

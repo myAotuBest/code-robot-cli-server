@@ -5,7 +5,7 @@
  * @Github: @163.com
  * @Date: 2020-12-30 10:39:30
  * @LastEditors: Roy
- * @LastEditTime: 2021-09-24 16:25:29
+ * @LastEditTime: 2022-02-08 11:12:16
  * @Deprecated: 否
  * @FilePath: /code-robot-cli-server/config/db.js
  */
@@ -30,7 +30,8 @@ const OSS_COMPONENT_BUCKET = 'roy-component';
 const MYSQL_HOST = "rm-bp188055550b15tn90o.mysql.rds.aliyuncs.com"
 const MYSQL_PORT = "3306";
 const MYSQL_USER = "imooc";
-const MYSQL_PWD = fs.readFileSync(path.resolve(userHome, '.code-robot-cli', 'mysql_password')).toString().trim();
+const MYSQL_PWD = "imooc123";
+// const MYSQL_PWD = fs.readFileSync(path.resolve(userHome, '.code-robot-cli', 'mysql_password')).toString().trim();
 const MYSQL_DB = 'imooc_cli';
 
 module.exports = {

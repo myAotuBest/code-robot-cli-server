@@ -36,7 +36,7 @@ jobs:
       - name: 'copy necessary files in to one folder'
         run: |
           mkdir code-robot-cli-server
-          cp .env docker-compose-online.yml code-robot-cli-server
+          cp docker-compose-online.yml code-robot-cli-server
           cp -r mongo-entrypoint code-robot-cli-server
           ls -a code-robot-cli-server
       # 通过 scp 拷贝必须文件到服务器

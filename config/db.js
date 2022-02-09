@@ -5,7 +5,7 @@
  * @Github: @163.com
  * @Date: 2020-12-30 10:39:30
  * @LastEditors: Roy
- * @LastEditTime: 2022-02-08 11:12:16
+ * @LastEditTime: 2022-02-09 15:13:05
  * @Deprecated: 否
  * @FilePath: /code-robot-cli-server/config/db.js
  */
@@ -20,7 +20,7 @@ const mongodbDbName = 'imooc-cli';
 /*OSS */
 
 const OSS_ACCESS_KEY = 'LTAI5tLNC9xtRY2rizyfPYck';
-const OSS_ACCESS_SECRET_KEY = fs.readFileSync(path.resolve(userHome, '.code-robot-cli', 'oss_access_secret_key')).toString().trim();
+const OSS_ACCESS_SECRET_KEY = fs.readFileSync(path.resolve(userHome, 'code-robot-cli', 'oss_access_secret_key')).toString().trim();
 const OSS_PROD_BUCKET = 'roy-cli-sync';
 const OSS_DEV_BUCKET = 'roy-cli-sync-dev';
 const OSS_REGION = 'oss-cn-qingdao'

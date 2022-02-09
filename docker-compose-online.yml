@@ -4,7 +4,7 @@ services:
     image: redis
     container_name: code-robot-cli-redis
     ports:
-      - 6380:6378
+      - 6380:6379
   code-robot-cli-server:
     image: registry.cn-qingdao.aliyuncs.com/greedcat/code-robot-cli-server:{{tag}}
     container_name: code-robot-cli-server

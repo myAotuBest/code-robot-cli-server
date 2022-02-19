@@ -5,9 +5,9 @@
  * @Github: @163.com
  * @Date: 2020-12-30 10:39:30
  * @LastEditors: Roy
- * @LastEditTime: 2021-07-23 17:33:57
+ * @LastEditTime: 2022-02-12 18:18:31
  * @Deprecated: 否
- * @FilePath: /roy-cli-server/app/controller/project.js
+ * @FilePath: /code-robot-cli-server/app/controller/project.js
  */
 'use strict';
 
@@ -29,7 +29,7 @@ class ProjectController extends Controller {
         type: 'normal',
         installCommand: 'npm install --registry=https://registry.npm.taobao.org/',
         startCommand: 'npm run serve',
-        version: '1.0.0',
+        version: '1.0.2',
         tag: ['project'],
         ignore: ['**/public/**']
       }, {
@@ -38,7 +38,7 @@ class ProjectController extends Controller {
         type: 'normal',
         installCommand: 'npm install --registry=https://registry.npm.taobao.org/',
         startCommand: 'npm run serve',
-        version: '1.0.0',
+        version: '1.0.2',
         tag: ['project'],
         ignore: ['**/public/**']
       }, {
@@ -56,7 +56,7 @@ class ProjectController extends Controller {
         type: 'normal',
         installCommand: 'npm install --registry=https://registry.npm.taobao.org/',
         startCommand: 'npm run serve',
-        version: '1.0.0',
+        version: '1.0.1',
         tag: ['component'],
         ignore: ['**/public/**', '**.png']
       }, {
@@ -65,7 +65,7 @@ class ProjectController extends Controller {
         type: 'normal',
         installCommand: 'npm install --registry=https://registry.npm.taobao.org/',
         startCommand: 'npm run serve',
-        version: '1.0.3',
+        version: '1.0.4',
         tag: ['component'],
         ignore: ['**/public/**', '**.png'],
         "buildPath": "dist",

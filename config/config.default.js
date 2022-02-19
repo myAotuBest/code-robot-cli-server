@@ -5,7 +5,7 @@
  * @Github: @163.com
  * @Date: 2020-12-30 10:39:30
  * @LastEditors: Roy
- * @LastEditTime: 2022-02-08 11:40:44
+ * @LastEditTime: 2022-02-12 17:38:58
  * @Deprecated: 否
  * @FilePath: /code-robot-cli-server/config/config.default.js
  */
@@ -57,7 +57,7 @@ module.exports = appInfo => {
   };
   config.cluster = {
     listen: {
-      port: 7003,
+      port: 7001,
     }
   };
   config.redis = {
